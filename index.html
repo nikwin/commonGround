@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="stylesheet" type="text/css" href="game.css" media="screen" />
+    <title>Common Ground</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <span id="sidebar">
+      <h2>Current Tasks</h2>
+      <ul id="tasks">
+      </ul>
+      <input type="button" id="checkTask" value="Check" />
+      <h2 id="state">Add Media</h2>
+      <form onsubmit="return false;">
+        <label>Name:</label>
+        <input id="name" />
+        <br /><br />
+        <label>Category:</label>
+        <select id="selectCat">
+          <option value="Game">Game</option>
+        </select>
+        <br /><br />
+        <label>Hypothetical media:</label>
+        <input type="checkbox" id="hypo" value="Hypothetical" />
+        <p>What do you appreciate about it (preferably in fewer than three words each)?</p>
+        <label>Aspects:</label>
+        <ul id="aspects">
+        </ul>
+        <select id="selectAspect">
+          <option value="" selected disabled>Please select an aspect.</option>
+        </select>
+        <br /><br />
+        <label>New Aspect:</label>
+        <input id="aspect" />
+        <input type="button" id="addAspect" value="Add" />
+        <br /><br />
+        <input type="submit" value="Submit" />
+        <label>
+      </form>
+    </span>
+    <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="std.js"></script>
+    <script type="text/javascript" src="run.js"></script>
+    <script type="text/javascript" src="stdMain.js"></script>
+  </body>
+</html>

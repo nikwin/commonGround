@@ -1,0 +1,65 @@
+* TODO [#A] First Playable [18/20]
+  DEADLINE: <2023-11-30 Thu>
+** DONE Block out project /2T
+   DEADLINE: <2023-11-29 Wed>
+** DONE Screen + UI Bar /2T
+   DEADLINE: <2023-11-29 Wed>
+** DONE Media objects [3/3] /1T
+   DEADLINE: <2023-11-29 Wed>
+   - [X] Category
+   - [X] Name
+   - [X] Reasons
+** DONE Be able to add media /2T
+   DEADLINE: <2023-11-29 Wed>
+** DONE Task list /2T
+   DEADLINE: <2023-11-29 Wed>
+   - [X] Current task
+   - [X] Next task
+** DONE Have the game allow you to reuse categories. /2T
+   DEADLINE: <2023-11-29 Wed>
+** DONE Be able to edit media /2T
+   DEADLINE: <2023-11-29 Wed>
+** DONE Be able to set category /1T
+   DEADLINE: <2023-11-29 Wed>
+** DONE Be able to reuse aspects /2T
+   DEADLINE: <2023-11-29 Wed>
+** DONE Write out content /4T
+   DEADLINE: <2023-11-29 Wed>
+** DONE Shift the task completion to a manual check instead of an automatic check so that tasks don't complete without the player seeing /1T
+   DEADLINE: <2023-11-30 Thu>
+** DONE Plot out the rest of the game
+   DEADLINE: <2023-11-30 Thu>
+   - [X] Add music and memories
+   - [X] Introduce combinations
+     - Have combinations that add something novel to both media.
+   - [X] Can you express something existing as a combination
+   - [X] Introduce imaginary media.
+** DONE Support imaginary media /2T
+   DEADLINE: <2023-11-30 Thu>
+** DONE Be able to represent X+Y /4T
+   DEADLINE: <2023-11-30 Thu>
+   - Drag a line to combine and then be able to edit
+** DONE Be able to remove reasons /2T
+   DEADLINE: <2023-11-30 Thu>
+** DONE Put the aspects on the screen too and have them pull the media towards them and draw links
+   DEADLINE: <2023-11-30 Thu>
+** DONE Move the media around on the screen /2T
+   DEADLINE: <2023-11-30 Thu>
+** TODO Playthrough /1T
+   DEADLINE: <2023-11-30 Thu>
+** TODO Render task description
+** DONE Add inertia to the media
+   DEADLINE: <2023-11-30 Thu>
+* TODO Second draft [0/12]
+** TODO Add images to the media
+** TODO Integrate the aspects. Ask the players to identify media that explicitly fits aspects they've mentioned.
+** TODO Refactor the game to introduce imaginary media much earlier
+** TODO Something to share the media
+** TODO Explain the media literacy part more.
+** TODO Make the categories into images.
+** TODO Be able to add more categories
+** TODO Don't let people add aspects that they've already added to the select aspect menu
+** TODO Render aspects and media differently
+** TODO Put in a better background - maybe the mondrian again
+** TODO Do more with the linkages. It feels good to have everything linked together.
+** TODO Give the aspects a little velocity too.
