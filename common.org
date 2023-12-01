@@ -51,10 +51,13 @@
    DEADLINE: <2023-11-30 Thu>
 ** DONE Add inertia to the media
    DEADLINE: <2023-11-30 Thu>
-* TODO Second draft [7/14]
+* TODO [#A] Second draft [7/17]
+  DEADLINE: <2023-12-01 Fri>
 ** DONE Add images to the media
 ** TODO Refactor the game to introduce imaginary media much earlier
+   DEADLINE: <2023-12-01 Fri>
 ** TODO Explain the media literacy part more.
+   DEADLINE: <2023-12-01 Fri>
 ** DONE Be able to add more categories
 ** DONE Be able to read the aspect directly
 ** DONE Don't let people add aspects that they've already added to the select aspect menu
@@ -62,7 +65,14 @@
 ** DONE Render imaginary media differently
 ** DONE Give the aspects a little velocity too.
 ** TODO Put in a better background - maybe the mondrian again
+   DEADLINE: <2023-12-01 Fri>
 ** TODO Do more with the linkages. It feels good to have everything linked together.
+   DEADLINE: <2023-12-01 Fri>
+** TODO Put the game on Itch /2T
+   DEADLINE: <2023-12-01 Fri>
 ** TODO Check other people's games.
+   DEADLINE: <2023-12-01 Fri>
+** TODO Record playthrough
+** TODO Making a combination shouldn't add the media directly.
 ** TODO Integrate the aspects. Ask the players to identify media that explicitly fits aspects they've mentioned.
 ** TODO Something to share the media

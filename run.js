@@ -16,15 +16,16 @@ Media.prototype.render = function(){
     if (this.hypothetical){
         image += '_i';
     }
+    
     ctx.drawImage(getImage(image), this.rect[0] + 1, this.rect[1] + 1);
-    ctx.fillText(this.name, this.rect[0] + 22, this.rect[1] + this.rect[3] - 1);
+    ctx.fillText(this.name, this.rect[0] + 22, this.rect[1] + this.rect[3] / 2 + 7);
     ctxRoundedRect(this.rect);
 };
 
 var Aspect = function(name){
     this.name = name;
     this.rect = [randInt(width - 80), randInt(height - 80), 40, 20];
-    this.velocity = [randInt(10) - 5, randInt(10) - 5];
+    this.velocity = [(3 + randInt(5)) * (randInt(2) ? 1 : -1), (3 + randInt(5)) * (randInt(2) ? 1 : -1)];
 };
 
 Aspect.prototype.render = function(){
@@ -59,7 +60,7 @@ var tasks = {
         text: "Unique aspect",
         description: "Now, can you think of a game which you like, but for none of the reasons you've<br />listed so far? Add that game.",
         check: media => media[media.length - 1].aspects.every(aspect => media.slice(0, -1).every(med => med.aspects.indexOf(aspect) == -1)),
-        nextKeys: ['startBook', 'startMovie']
+        nextKey: 'startBook'
     },
     startBook: {
         text: "Add 2 Books",
@@ -73,7 +74,14 @@ var tasks = {
     linkBook: {
         text: "Link Book",
         description: "Do you have any common aspects between the books and the rest?",
-        check: media => media.filter(med => med.category == 'Book').some(med => med.aspects.some(aspect => media.some(med => med.category != 'Book' && med.aspects.indexOf(aspect) != -1)))
+        check: media => media.filter(med => med.category == 'Book').some(med => med.aspects.some(aspect => media.some(med => med.category != 'Book' && med.aspects.indexOf(aspect) != -1))),
+        nextKey: "explainBook"
+    },
+    explainBook: {
+        text: "Common Ground",
+        description: "This is what I want to get at with this game. We tend to treat different<br />media forms as entirely different experiences.<br />However, once we break things down, the commonalities start becoming clear.",
+        check: trueFunction,
+        nextKey: "startMovie"
     },
     startMovie: {
         text: "Add 2 Movies",
@@ -86,7 +94,7 @@ var tasks = {
     },
     linkMovie: {
         text: "Link Movie",
-        description: "Do you have any common aspects between the movies and the rest?",
+        description: "Do you have any common aspects between the movies and the rest?<br />Feel free to add more examples if you need.<br />Use the hypothetical checkbox if you want to make some up",
         check: media => media.filter(med => med.category == 'Movie').some(med => med.aspects.some(aspect => media.some(med => med.category != 'Movie' && med.aspects.indexOf(aspect) != -1))),
         nextKey: "linkAll"
     },
@@ -117,7 +125,7 @@ var tasks = {
         text: "Combinations",
         description: "Try dragging a line from one media object to another to form a combination between the two.",
         check: media => media.some(med => med.combination),
-        nextKey: "existCombine"
+        nextKey: "interestCombine"
     },
     existCombine: {
         text: "Existing combinations",
@@ -126,15 +134,15 @@ var tasks = {
         nextKey: "interestCombine"
     },
     interestCombine: {
-        text: "Find Interesting Combinations",
+        text: "Find 3 Interesting Combinations",
         description: "Can you make some interesting combinations with what you have here? See if you can put<br />together something unexpected.",
-        check: media => media.filter(med => med.combination).length > 4,
+        check: media => media.filter(med => med.combination).length >= 3,
         nextKey: "imagineStart"
     },
     imagineStart: {
         text: "Add imaginary media",
         description: "Is there something you wish existed and something that you can't combine media to get?<br />Put down some things that you would like to see.",
-        check: media => media.filter(med => med.hypothetical).length > 4,
+        check: media => media.filter(med => med.hypothetical).length >= 3,
         nextKey: "finish"
     },
     finish: {
@@ -244,6 +252,13 @@ Game.prototype.initialize = function(){
 Game.prototype.updateTaskDisplay = function(){
     var lines = this.tasks.map(task => `<li>${task.text}</li><p>${task.description}</p>`).reduce(addFunction, '');
     $('#tasks').html(lines);
+
+    if (this.tasks[0].check == trueFunction){
+        $("#checkTask").prop("value", "Continue");
+    }
+    else{
+        $("#checkTask").prop("value", "Check");
+    }
 };
 
 Game.prototype.addMedia = function(){
