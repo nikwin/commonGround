@@ -185,6 +185,29 @@ var tasks = {
         text: "Add imaginary media",
         description: "Is there something you wish existed and something that you can't combine media to get?<br />Put down some things that you would like to see.",
         check: media => media.filter(med => med.hypothetical).length >= 3,
+        nextKey: "linkMap"
+    },
+    linkMap: {
+        text: "Link map",
+        description: "Now link up the whole map. You should be able to draw a line from anything to anything.<br />Make up media that sounds fun!.",
+        check: media => {
+            var linkedMedia = [media[0]];
+            var currentAspects = media.aspects;
+            var finishedAspects = [];
+            while (currentAspects.length){
+                finishedAspects = finishedAspects.concat(currentAspects);
+                
+                var newMedia = media.filter(med => (med.aspects.some(aspect => currentAspects.indexOf(aspect) != -1) &&
+                                                    linkedMedia.indexOf(med) == -1));
+                linkedMedia = linkedMedia.concat(newMedia);
+                currentAspects = newMedia
+                    .map(med => med.aspects)
+                    .flat()
+                    .filter(uniqueFunction)
+                    .filter(aspect => finishedAspects.indexOf(aspect) == -1);
+            }
+            return linkedMedia.length == media.length;
+        },
         nextKey: "finish"
     },
     finish: {
