@@ -138,6 +138,12 @@ var tasks = {
             return gameAspects.some(aspect => (bookAspects.indexOf(aspect) != -1 &&
                                                movieAspects.indexOf(aspect) != -1));
         },
+        nextKey: "explainLink"
+    },
+    explainLink: {
+        text: "Links",
+        description: "Putting media in conversation with other, more unexpected media<br />changes the way it's read for the better.",
+        check: trueFunction,
         nextKey: "musicMemory"
     },
     musicMemory: {
@@ -167,6 +173,12 @@ var tasks = {
         text: "Find 3 Interesting Combinations",
         description: "Can you make some interesting combinations with what you have here? See if you can put<br />together something unexpected.",
         check: media => media.filter(med => med.combination).length >= 3,
+        nextKey: "explainCombine"
+    },
+    explainCombine: {
+        text: "Combinations as Bridges",
+        description: "Maybe through combinations we can find paths to generating media that can be<br />engaged with in a manner usual to a different form entirely.",
+        check: trueFunction,
         nextKey: "imagineStart"
     },
     imagineStart: {

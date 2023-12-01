@@ -51,7 +51,7 @@
    DEADLINE: <2023-11-30 Thu>
 ** DONE Add inertia to the media
    DEADLINE: <2023-11-30 Thu>
-* TODO [#A] Second draft [11/17]
+* TODO [#A] Second draft [12/17]
   DEADLINE: <2023-12-01 Fri>
 ** DONE Add images to the media
 ** DONE Refactor the game to introduce imaginary media much earlier
@@ -70,7 +70,7 @@
    DEADLINE: <2023-12-01 Fri>
 ** DONE Put the game on Itch /2T
    DEADLINE: <2023-12-01 Fri>
-** TODO Check other people's games.
+** DONE Check other people's games.
    DEADLINE: <2023-12-01 Fri>
 ** TODO Record playthrough
 ** TODO Making a combination shouldn't add the media directly.
