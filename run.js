@@ -32,6 +32,36 @@ Aspect.prototype.render = function(){
     ctx.fillText(this.name, this.rect[0], this.rect[1] + this.rect[3]);
 };
 
+var BackgroundElement = function(rect){
+    this.rect = rect;
+    this.color = [160 + randInt(48), 160 + randInt(48), 160 + randInt(48)];
+    this.timeToUpdate = 20 + Math.random() * 10;
+    this.transitionTime = 0;
+    this.transitionColor = false;
+};
+
+BackgroundElement.prototype.render = function(){
+    ctx.fillStyle = this.color.reduce((memo, i) => memo + i.toString(16), '#');
+    ctx.fillRect(...this.rect);
+};
+
+BackgroundElement.prototype.update = function(interval){
+    if (this.transitionTime > 0){
+        this.color = interpolate(this.startColor, this.transitionColor, 
+                                 (5 - this.transitionTime) / 5).map(i => Math.floor(i));
+        this.transitionTime -= interval;
+    }
+    else{
+        this.timeToUpdate -= interval;
+        if (this.timeToUpdate < 0){
+            this.timeToUpdate = 20 + Math.random() * 10;
+            this.transitionTime = 5;
+            this.transitionColor = [160 + randInt(48), 160 + randInt(48), 160 + randInt(48)];
+            this.startColor = this.color;
+        }
+    }
+};
+
 var uniqueFunction = (ele, idx, ary) => ary.indexOf(ele) == idx;
 
 var tasks = {
@@ -159,15 +189,28 @@ var Game = function(gameProperties){
     this.aspects = [];
     this.currentMedia = undefined;
     this.aspectEntities = [];
+    this.backgroundElements = [];
+
+    var x = 0;
+    while (x < width){
+        var w = 100 + randInt(200);
+        var y = 0;
+        while (y < height){
+            var h = 100 + randInt(200);
+            this.backgroundElements.push(new BackgroundElement([x, y, w, h]));
+            y += h;
+        }
+        x += w;
+    }
 };
 
 Game.prototype.draw = function(){
-    ctx.fillStyle = '#aaaacc';
-    ctx.fillRect(0, 0, width, height);
-
+    this.backgroundElements.forEach(entity => entity.render());
+    
     ctx.fillStyle = '#000000';
     
     this.aspectEntities.forEach(entity => entity.render());
+    
     this.media.forEach(entity => {
         entity.aspects.forEach(aspect => {
             var aspectEntity = this.aspectEntities.find(aspectEntity => aspectEntity.name == aspect);
@@ -187,6 +230,7 @@ Game.prototype.draw = function(){
 };
 
 Game.prototype.update = function(interval){
+    this.backgroundElements.forEach(entity => entity.update(interval));
     this.media.forEach(med => med.aspects
                        .filter(aspect => !this.aspectEntities.some(aspectEntity => aspectEntity.name == aspect))
                        .forEach(aspect => this.aspectEntities.push(new Aspect(aspect))));
