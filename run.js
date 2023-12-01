@@ -88,7 +88,7 @@ var tasks = {
     },
     uniqueAspect: {
         text: "Unique aspect",
-        description: "Now, can you think of a game which you like, but for none of the reasons you've<br />listed so far? Add that game.",
+        description: "Now, can you think of a game which you like, but for none of the<br />reasons you've listed so far? Add that game.",
         check: media => media[media.length - 1].aspects.every(aspect => media.slice(0, -1).every(med => med.aspects.indexOf(aspect) == -1)),
         nextKey: 'startBook'
     },
