@@ -265,15 +265,6 @@ var getPos = function(e) {
     var actualWidth = boundingRect.width;
     var actualHeight = boundingRect.height;
 
-    if (actualWidth > actualHeight * 4 / 3){
-        actualWidth = actualHeight * 4 / 3;
-        mx -= (boundingRect.width - actualWidth) / 2;
-    }
-    else if (actualWidth < actualHeight * 4 / 3){
-        actualHeight = actualWidth * 3 / 4;
-        my -= (boundingRect.height - actualHeight) / 2;
-    }
-
     mx *= width / actualWidth;
     my *= height / actualHeight;
 

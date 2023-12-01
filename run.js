@@ -3,7 +3,7 @@ var Media = function(category, name, aspects, combination, hypothetical){
     this.name = name;
     this.aspects = aspects.filter(x => x && x.length).filter(uniqueFunction);
 
-    var width = 25 + ctx.measureText(this.name).width;
+    var width = 25 + Math.ceil(ctx.measureText(this.name).width);
 
     this.rect = [randInt(width - 80), randInt(height - 80), width, 25];
     this.velocity = [randInt(40) - 20, randInt(40) - 20];
@@ -192,7 +192,7 @@ var tasks = {
         description: "Now link up the whole map. You should be able to draw a line from anything to anything.<br />Make up media that sounds fun!.",
         check: media => {
             var linkedMedia = [media[0]];
-            var currentAspects = media.aspects;
+            var currentAspects = media[0].aspects;
             var finishedAspects = [];
             while (currentAspects.length){
                 finishedAspects = finishedAspects.concat(currentAspects);
