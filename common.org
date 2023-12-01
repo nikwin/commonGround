@@ -1,4 +1,4 @@
-* TODO [#A] First Playable [18/20]
+* DONE [#A] First Playable [20/20]
   DEADLINE: <2023-11-30 Thu>
 ** DONE Block out project /2T
    DEADLINE: <2023-11-29 Wed>
@@ -45,21 +45,24 @@
    DEADLINE: <2023-11-30 Thu>
 ** DONE Move the media around on the screen /2T
    DEADLINE: <2023-11-30 Thu>
-** TODO Playthrough /1T
+** DONE Playthrough /1T
    DEADLINE: <2023-11-30 Thu>
-** TODO Render task description
+** DONE Render task description
+   DEADLINE: <2023-11-30 Thu>
 ** DONE Add inertia to the media
    DEADLINE: <2023-11-30 Thu>
-* TODO Second draft [0/12]
-** TODO Add images to the media
-** TODO Integrate the aspects. Ask the players to identify media that explicitly fits aspects they've mentioned.
+* TODO Second draft [7/14]
+** DONE Add images to the media
 ** TODO Refactor the game to introduce imaginary media much earlier
-** TODO Something to share the media
 ** TODO Explain the media literacy part more.
-** TODO Make the categories into images.
-** TODO Be able to add more categories
-** TODO Don't let people add aspects that they've already added to the select aspect menu
-** TODO Render aspects and media differently
+** DONE Be able to add more categories
+** DONE Be able to read the aspect directly
+** DONE Don't let people add aspects that they've already added to the select aspect menu
+** DONE Render aspects and media differently
+** DONE Render imaginary media differently
+** DONE Give the aspects a little velocity too.
 ** TODO Put in a better background - maybe the mondrian again
 ** TODO Do more with the linkages. It feels good to have everything linked together.
-** TODO Give the aspects a little velocity too.
+** TODO Check other people's games.
+** TODO Integrate the aspects. Ask the players to identify media that explicitly fits aspects they've mentioned.
+** TODO Something to share the media

@@ -2,19 +2,29 @@ var Media = function(category, name, aspects, combination, hypothetical){
     this.category = category;
     this.name = name;
     this.aspects = aspects.filter(x => x && x.length).filter(uniqueFunction);
-    this.rect = [randInt(width - 80), randInt(height - 80), 40, 20];
+
+    var width = 25 + ctx.measureText(this.name).width;
+
+    this.rect = [randInt(width - 80), randInt(height - 80), width, 25];
     this.velocity = [randInt(40) - 20, randInt(40) - 20];
     this.combination = combination;
     this.hypothetical = hypothetical;
 };
 
 Media.prototype.render = function(){
-    ctx.fillText(this.name, this.rect[0], this.rect[1] + this.rect[3]);
+    var image = this.category;
+    if (this.hypothetical){
+        image += '_i';
+    }
+    ctx.drawImage(getImage(image), this.rect[0] + 1, this.rect[1] + 1);
+    ctx.fillText(this.name, this.rect[0] + 22, this.rect[1] + this.rect[3] - 1);
+    ctxRoundedRect(this.rect);
 };
 
 var Aspect = function(name){
     this.name = name;
     this.rect = [randInt(width - 80), randInt(height - 80), 40, 20];
+    this.velocity = [randInt(10) - 5, randInt(10) - 5];
 };
 
 Aspect.prototype.render = function(){
@@ -100,6 +110,7 @@ var tasks = {
         updateGame: (game) => {
             $('#selectCat').append('<option value="Music">Music</option>');
             $('#selectCat').append('<option value="Memory">Memory</option>');
+            $('#selectCat').append('<option value="Other">Other</option>');
         }
     },
     combineStart: {
@@ -186,32 +197,34 @@ Game.prototype.update = function(interval){
 
         med.velocity[0] = max(-maxVel, min(maxVel, med.velocity[0]));
         med.velocity[1] = max(-maxVel, min(maxVel, med.velocity[1]));
-
-        med.rect[0] += med.velocity[0] * interval;
-
-        if (med.rect[0] < 0){
-            med.rect[0] = 1;
-            med.velocity[0] *= -1;
-        }
-        else if (med.rect[0] + med.rect[2] > width){
-            med.rect[0] = width - med.rect[2] - 1;
-            med.velocity[0] *= -1;
-        }
-
-        med.rect[1] += med.velocity[1] * interval;
-
-        if (med.rect[1] < 0){
-            med.rect[1] = 1;
-            med.velocity[1] *= -1;
-        }
-        else if (med.rect[1] + med.rect[3] > height){
-            med.rect[1] = height - med.rect[3] - 1;
-            med.velocity[1] *= -1;
-        }
     });
 
     this.aspectEntities = this.aspectEntities.filter(aspect => 
         this.media.some(med => med.aspects.indexOf(aspect.name) != -1));
+
+    this.aspectEntities.concat(this.media).forEach(entity => {
+        entity.rect[0] += entity.velocity[0] * interval;
+
+        if (entity.rect[0] < 0){
+            entity.rect[0] = 1;
+            entity.velocity[0] *= -1;
+        }
+        else if (entity.rect[0] + entity.rect[2] > width){
+            entity.rect[0] = width - entity.rect[2] - 1;
+            entity.velocity[0] *= -1;
+        }
+
+        entity.rect[1] += entity.velocity[1] * interval;
+
+        if (entity.rect[1] < 0){
+            entity.rect[1] = 1;
+            entity.velocity[1] *= -1;
+        }
+        else if (entity.rect[1] + entity.rect[3] > height){
+            entity.rect[1] = height - entity.rect[3] - 1;
+            entity.velocity[1] *= -1;
+        }
+    });
 
     return true;
 };
@@ -238,6 +251,8 @@ Game.prototype.addMedia = function(){
     var category = $('#selectCat').val();
     var hypo = $('#hypo').prop('checked');
     
+    this.addAspect();
+
     if (name.length && this.aspects.length){
         if (this.currentMedia){
             this.currentMedia.name = name;
@@ -313,7 +328,9 @@ Game.prototype.addAspect = function(){
         
     if (aspect.length){
         if (this.holdAspect(aspect)){
-            $("#selectAspect").append(`<option value="${aspect}">${aspect}</option>`);
+            if (!this.aspectEntities.some(aspectEntity => aspectEntity.name == aspect)){
+                $("#selectAspect").append(`<option value="${aspect}">${aspect}</option>`);
+            }
         }
         $('#aspect').val('');
     }
